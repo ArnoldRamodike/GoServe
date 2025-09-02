@@ -4,3 +4,4 @@ example.go
 envrc
 migrate
 bin
+*.yml
