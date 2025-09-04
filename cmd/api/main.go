@@ -4,16 +4,22 @@ import (
 	"log"
 	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/sikozonpc/goserve/internal/db"
 	"github.com/sikozonpc/goserve/internal/env"
 	"github.com/sikozonpc/goserve/internal/store"
 )
 
 func main() {
+
+	if err := godotenv.Load(); err != nil {
+		log.Print("NO .env file found!!")
+	}
+
 	cfg := config{
-		addr: env.GetString("ADDR", ":8081"),
+		addr: env.GetString("ADDR", "=:8081"),
 		db: dbConfig{
-			addr:         env.GetString("DB_ADDR", "postgress://admin:adminpassword@localhost/social?sslmode=disable"),
+			addr:         env.GetString("DB_ADDR", ""),
 			maxOpenConns: env.Getint("DB_MAX_OPEN_CONS", 30),
 			maxIdleConns: env.Getint("DB_MAX_OPEN_CONS", 30),
 			maxIdleTime:  env.GetString("DB_MAX_IDLE_TIME", "15m"),
