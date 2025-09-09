@@ -1,3 +1,3 @@
 # Golang API
 
-## API implemntations using Golang.
+## Authnetications services.
